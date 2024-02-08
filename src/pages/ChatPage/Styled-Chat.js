@@ -1,92 +1,65 @@
 import styled from "styled-components"
+import { BackgroundChatColor, RedColor, TextColor } from "../../constants/colors/Colors"
 
-export const DivLogin = styled.div`
-    display:grid;
-    grid-template-columns: 0.6fr 1fr;
-    max-height:100vh; 
-    max-width:400vw;   
+export const DivChat = styled.div`
+    // border: solid 3px green;
+    background-color: ${BackgroundChatColor}; 
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    max-height: 100vh;
 `
-export const Image = styled.div`
-    display:grid;
-    margin: 2%;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    min-width: 100%;
-    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    max-width: 200px;        
-}
-    `
-export const Div1 = styled.div`
-    background-color:#befcc9;
-    border-radius: 0% 50% 0% 0%;
-`
-export const Div2 = styled.div`
-    background-color: #1f9bf0;
-    border-radius: 0% 0% 50% 0%;
-`
-export const Div3 = styled.div`
-    background-color: black;
-    border-radius: 50% 0% 0% 0%;
-`
-export const Div4 = styled.div`
-    background: linear-gradient(45deg, #1f9bf0 30%, #befcc9 90%);
-    border-radius: 50% 00% 0% 0%;
-`
-export const Div5 = styled.div`
-    background: linear-gradient(45deg, #1f9bf0 30%, #befcc9 90%);
-    border-radius: 0% 0% 50% 0%;
-`
-export const Div6 = styled.div`
-    background-color: #befcc9;
-    border-radius: 0% 0% 0% 50%;
-`
-export const Div7 = styled.div`
-    background-color: black;
-    border-radius: 50% 0% 0% 0%;
-`
-export const Div8 = styled.div`
-    background: linear-gradient(45deg, #befcc9 30%, #1f9bf0 90%);
-    border-radius: 50% 50% 50% 50%;
-`
-export const Div9 = styled.div`
-    background-color: black;
-    border-radius: 50% 0% 0% 0%;
-`
-export const Div10 = styled.div`
-    background-color: #befcc9;
-    border-radius: 0% 0% 0% 0%;
-    h3{
-        margin-top: 80%;
-        margin-left:10px;
-        color:#c5cacf;
+export const DivButtonBack = styled.div`
+    display: flex;
+    // border: solid 4px black;
+    justify-content: center;
+
+    button{
+        background-color: transparent;
+        border:none;
+
+        img{
+            height: 10px;
+            padding: 10px;
+        }
     }
 `
-export const Div11 = styled.div`
-    background-color: black;
-    border-radius: 0% 0% 0% 0%;
+
+export const DivLoading = styled.div`
+    // border: solid 4px pink;
+    display: flex;
+    justify-content: center;
+    margin-top: 40vh;
 `
-export const Div12 = styled.div`
-    background-color: #1f9bf0;
-    border-radius: 0% 50% 0% 50%;
+export const DivInputButton = styled.div`
+    // border: solid 1px red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px;
+    position:fixed;
+    bottom: 2%;
+    gap: 1%;
+
+    input{
+        width: 58vw;
+        height: 40px;
+        border:  none;
+        outline: none;
+        padding: 0.6rem;
+        border-radius: 30px 30px 30px 30px;
+    }
+
+    button{
+        border-radius: 50%;
+        heigth: 3rem;
+        width: 4rem;
+        background-color: ${RedColor};
+        border: none;
+
+        img{
+            margin: 20px 0;
+            height: 20px;
+        }
+    }
 `
-export const DivHandleInput = styled.div`
-    gap: 20px;
-     display: flex;
-     flex-direction: column;
-     margin-top: 10%;
-    align-items: center; 
-    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    border: solid;
-    min-height: 100%;
-    min-width: 100%;
-    background: white;      
-}
-`
-export const Text = styled.h1`
- color:#c5cacf;
-`
-
-
-
-
-
