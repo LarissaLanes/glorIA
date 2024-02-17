@@ -1,14 +1,82 @@
-import React from "react";
-import { DivButtonBack, DivChat, DivInputButton, DivLoading, DivMessage } from "./Styled-Chat";
+import React, { useState } from "react";
+import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt} from "./Styled-Chat";
 import Loading from "../../components/Loading";
 import buttonBack from "../../constants/assets/arrowBack.png"
 import { goToFeed } from "../../rotes/Coordinator";
 import { useHistory} from "react-router";
 import mickIcon from "../../constants/assets/mick.svg"
 import sendIcon from "../../constants/assets/Playplay.svg"
+import responsesGpt from "../../pages/ChatPage/db"
+
 
 const ChatPage = () => {
   const history = useHistory()
+  const apiKey = "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"
+
+  const [messages, setMessages] = useState([
+    {
+      message: "Olá, eu sou a GlorIA! Como posso te ajudar hoje?",
+      sender: "ChatGPT"
+    }
+  ]);
+  const [inputMessage, setInputMessage] = useState("");
+
+  const handleSend = async () => {
+    if (inputMessage.trim() === "") {
+      return;
+    }
+
+     //mensagem do banco de dados(faz o if e se nao encontrar mensagem no banco de dados enviar pra api)
+     const matchedResponse = responsesGpt.find(response => response.id.toLowerCase() === inputMessage.toLowerCase());
+
+     if (matchedResponse) {
+       // Se corresponder, usar o conteúdo da resposta como mensagem
+       const newMessages = [...messages, { message: inputMessage, sender: "user" }];
+       setMessages(newMessages);
+       setInputMessage("");
+   
+       const { id, imagem, materia, data } = matchedResponse;
+       const responseMessage = 
+       
+       <DivListResponseBdGpt key={id}>
+       <img src={imagem} alt={id} />
+       <p>{materia}</p>
+       <h5>{data}</h5>
+       </DivListResponseBdGpt>
+ 
+       setMessages([...newMessages, { message: responseMessage, sender: "ChatGPT", image: imagem }]);
+       return;
+     }
+     //
+
+    const newMessages = [...messages, { message: inputMessage, sender: "user" }];
+    setMessages(newMessages);
+    setInputMessage("");
+
+    const response = await fetch("https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        prompt: newMessages.map(({ message, sender }) => `${sender}: ${message}\nGlorIA:`).join("\n"),
+        max_tokens: 2048,
+        temperature: 0.5,
+        top_p: 1.0,
+        stop: ["\n"]
+      })
+    });
+
+    if (!response.ok) {
+      console.error("Erro ao enviar mensagem para a API do ChatGPT");
+      return;
+    }
+
+    const { choices } = await response.json();
+    const gptResponse = choices[0].text.trim();
+    setMessages([...newMessages, { message: gptResponse, sender: "ChatGPT" }]);
+  };
 
     return (
       <DivChat>
@@ -18,18 +86,34 @@ const ChatPage = () => {
           </button>
           {/* <select></select> */}
         </DivButtonBack>
-          <DivLoading>
+          {/* <DivLoading>
             <Loading/>
-          </DivLoading>        
-        <DivInputButton>
-          <input type="text" placeholder="Converse com a glorIA"  />
-          <button>
-            <img src={sendIcon} alt="botÃ£o enviar mensagem"/>
-          </button>
-          <button>
-            <img src={mickIcon} alt="botÃ£o enviar audio"/>
-          </button>
-        </DivInputButton>
+          </DivLoading>         */}
+           <div style={{ position: "relative"}}>
+        {messages.map((message, i) => {
+          return message.sender === "user" ? (
+            <DivBoxUserMessage key={i}>{message.message}</DivBoxUserMessage>
+          ) : (
+              <DivBoxGptMessage key={i}>{message.message}</DivBoxGptMessage>
+             
+          );
+        })}
+      
+      </div>
+      <DivInputButton>
+        <input
+          type="text"
+          placeholder="Converse com a GlorIA"
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+        />
+        <button onClick={handleSend}>
+          <img src={sendIcon} alt="botão enviar mensagem"/>
+        </button>
+        <button>
+          <img src={mickIcon} alt="botão enviar áudio"/>
+        </button>
+      </DivInputButton>
       </DivChat>
     )
 }

@@ -1,54 +1,53 @@
-const newsData = [
+import peDeMeia from "../../constants/assets/imgNoticies/noticiesPeDeMeia.png"
+import bbb from "../../constants/assets/imgNoticies/noticiesbbb24.png"
+import blocoDeRua from "../../constants/assets/imgNoticies/noticiesCarnaval.png"
+import ensinoSuperior from "../../constants/assets/imgNoticies/noticiesEnsinoSuperior.png"
+import carnaval from "../../constants/assets/imgNoticies/noticiesCarnaval2.avif"
+import carnaval24 from "../../constants/assets/imgNoticies/carnaval2024norj.webp"
+
+const responsesGpt = [
     {
-        "title": "Manchetes do dia",
-        "content": "Claro. Aqui estão as principais manchetes do dia: Governo vai pagar R$ 2mil por ano para alunos do ensino médio de baixa renda. Vanessa Lopes está em tratamento psiquiátrico na casa dos pais. Blocos de rua do Rio: Veja a lista e se prepare!"
+        "id": "Pé de meia",
+        "titulo": "Governo vai pagar R$ 2 mil por ano para alunos do ensino médio de baixa renda",
+        "materia": "Estudante receberá mais R$ 1 mil ao final de cada ano caso não seja reprovado e bônus por Enem.",
+        "imagem": peDeMeia,
+        "data": "Há 3 horas — Em Educação"
     },
     {
-        "title": "Show na minha região",
-        "content": "Segundo a editoria do g1, os principais shows que acontecerão no Rio de Janeiro são da Taylor Swift e do RBD.Devido à onda de calor extremo, é recomendado levar garrafas d’água e usar roupas frescas nos eventos."
+        "id": "BBB 24",
+        "titulo": "Vanessa Lopes está em tratamento psiquiátrico na casa dos pais",
+        "materia": "Informação é de boletim médico divulgado nas redes sociais da influencer.",
+        "imagem": bbb,
+        "data": "Há 2 horas — Em Pop & Arte"
     },
     {
-        "title": "Quais documentos preciso levar",
-        "content": "O que eu devo apresentar na entrada do show? Precisa mostrar um documento oficial com foto, o ingresso e, se for o caso, o comprovante de meia-entrada."
+        "id": "Blocos de rua",
+        "titulo": "Blocos de rua do Rio: veja a lista e faça sua busca entre os 453 desfiles oficiais do Carnaval 2024",
+        "materia": "Filtre por nome, data, local ou categoria entre os 453 desfiles de sábado (13) até o fim da folia.",
+        "imagem": blocoDeRua,
+        "data": "Há 2 semanas — Em Carnaval 2024 no Rio de Janeiro"
     },
     {
-        "title": "Clima da semana",
-        "content": "De acordo com o Climatempo, nos próximos dias, o tempo no Rio de Janeiro vai piorar com mais chuva. 31/01: o sol aparece de manhã, mas à tarde há possibilidade de chuvas fortes com raios 01/02: a chuva aumenta devido a uma frente fria se aproximando, com risco de temporais à tarde em todo o estado. A semana termina instável, com alto volume de chuva, aumentando o risco de enchentes e alagamentos, principalmente na Baixada Fluminense e no interior do estado. "
+        "id": "Ensino superior",
+        "titulo": "Sisu 2024: inscrições da única edição do ano vão até quinta; veja regras, número de vagas e mais dicas",
+        "materia": "Pela primeira vez, o programa terá apenas uma edição no ano. Processo seletivo iniciado nesta segunda (22) também será válido para candidatos a cursos iniciados no segundo semestre.",
+        "imagem": ensinoSuperior,
+        "data": "00h00 · Atualizado há 3 horas"
     },
     {
-        "title": "Blocos na minha região",
-        "content": "Segundo a lista divulgada pela Riotur, os principais blocos que ocorrerão no Centro do Rio de Janeiro são: Bloco da preta, Novos42, Carmelitas, Chora, Me Liga, Cordão da Bola Preta, Monobloco"
+        "id": "Carnaval 2024",
+        "titulo": "Carnaval Globeleza 2024 traz ampla cobertura focada na pluralidade da maior festa popular do Brasil",
+        "materia": "TV Globo, gshow, Multishow e GNT terão programação especial que inclui desfiles de São Paulo e Rio de Janeiro, folia em Salvador e também Carnaval da Sabrina",
+        "imagem": carnaval,
+        "data": "19h15 Atualizado há 16 horas"
     },
     {
-        "title": "Dicas pra curtir o Carnaval",
-        "content": "A matéria não cita dicas para curtir o Carnaval no Rio, porém, o g1 já postou sobre como curtir a folia em segurança nas festas de Maceió.  -Não levar documentos originais -Levar o menor número de coisas -Manter bolsa sempre na frente do corpo -Ter cuidado com copos e garrafas e não aceitar bebida de estranhos -Desconfiar de pessoas com atitudes suspeitas -Lembrar de identificar as crianças com pulseiras com os números dos responsáveis"
-    },
-    {
-        "title": "Quando rola o monobloco",
-        "content" : "O próximo desfile do Monobloco acontecerá no dia 18 de fevereiro de 2024, na Rua Primeiro de Março, 57, no Centro do Rio de Janeiro, com concentração marcada para às 07:00."
-        
-    },
-    {
-        "title":"Rio de janeiro hoje", 
-        "content" : "Olá! O clima no Rio de Janeiro hoje, dia 1º de fevereiro de 2024, está nublado com possibilidade de chuva leve. A temperatura máxima prevista é de 28°C e a mínima de 24°C. A umidade do ar está em torno de 80%."
-    },
-    {
-        "title":"Resumão da manhã", 
-        "content" : "Claro. Aqui estão as principais manchetes do dia: Governo vai pagar R$ 2mil por ano para alunos do ensino médio de baixa renda. Vanessa Lopes está em tratamento psiquiátrico na casa dos pais. Blocos de rua do Rio: Veja a lista e se prepare!"
-    },
-    {
-        "title": "Qual o seu nome",
-        "content": "Olá! Eu sou a GlorIA a assitente inteligente de conversa do G1, estou pronta para te ajudar a encontrar notícias."
-    },
-    {
-        "title": "Obrigada", 
-        "content": "É isso aí na dúvida, fala com a GlorIA"
-    },
-    {
-        "title": "Tchau", 
-        "content": "Até a próxima conversa! Fique à vontade para me chamar novamente"
+        "id": "Carnaval 2024 no RJ",
+        "titulo": "Rio tem quase 90 blocos no fim de semana de pré-carnaval",
+        "materia": "Filtre por nome, data, local ou categoria entre os 453 desfiles de sábado (13) até o fim da folia.",
+        "imagem": carnaval24,
+        "data": " Atualizado há 11 horas"
     }
-        
 ];
 
-export default newsData;
+export default responsesGpt;
