@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt} from "./Styled-Chat";
+import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading} from "./Styled-Chat";
 import Loading from "../../components/Loading";
 import buttonBack from "../../constants/assets/arrowBack.png"
 import { goToFeed } from "../../rotes/Coordinator";
@@ -20,11 +20,16 @@ const ChatPage = () => {
     }
   ]);
   const [inputMessage, setInputMessage] = useState("");
+  const [loading, setLoading] = useState(false); // Estado para controlar a exibição da tela de loading
+
 
   const handleSend = async () => {
     if (inputMessage.trim() === "") {
       return;
     }
+
+    setLoading(true); // Mostrar tela de loading
+
 
      //mensagem do banco de dados(faz o if e se nao encontrar mensagem no banco de dados enviar pra api)
      const matchedResponse = responsesGpt.find(response => response.id.toLowerCase() === inputMessage.toLowerCase());
@@ -45,6 +50,8 @@ const ChatPage = () => {
        </DivListResponseBdGpt>
  
        setMessages([...newMessages, { message: responseMessage, sender: "ChatGPT", image: imagem }]);
+       setLoading(false); // Esconder tela de loading
+
        return;
      }
      //
@@ -70,12 +77,16 @@ const ChatPage = () => {
 
     if (!response.ok) {
       console.error("Erro ao enviar mensagem para a API do ChatGPT");
+      setLoading(false); // Esconder tela de loading
+
       return;
     }
 
     const { choices } = await response.json();
     const gptResponse = choices[0].text.trim();
     setMessages([...newMessages, { message: gptResponse, sender: "ChatGPT" }]);
+    setLoading(false); // Esconder tela de loading
+
   };
 
     return (
@@ -86,9 +97,7 @@ const ChatPage = () => {
           </button>
           {/* <select></select> */}
         </DivButtonBack>
-          {/* <DivLoading>
-            <Loading/>
-          </DivLoading>         */}
+              
            <div style={{ position: "relative"}}>
         {messages.map((message, i) => {
           return message.sender === "user" ? (
@@ -98,8 +107,10 @@ const ChatPage = () => {
              
           );
         })}
-      
+               {loading && <DivLoading><Loading/></DivLoading>} {/* Mostrar tela de loading se o estado 'loading' for true */}
+
       </div>
+     
       <DivInputButton>
         <input
           type="text"

@@ -26,10 +26,10 @@ export const DivButtonBack = styled.div`
 `
 
 export const DivLoading = styled.div`
-    // border: solid 4px pink;
-    display: flex;
+    display: fixed;
     justify-content: center;
-    margin-top: 40vh;
+    margin-bottom: 40vh;
+    margin-top: 30px;
 `
 export const DivInputButton = styled.div`
     // border: solid 1px red;
