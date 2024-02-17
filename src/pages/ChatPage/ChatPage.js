@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading} from "./Styled-Chat";
+import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading, DivGpt, BtnTextoSpecth, BtnVoice} from "./Styled-Chat";
 import Loading from "../../components/Loading";
 import buttonBack from "../../constants/assets/arrowBack.png"
 import { goToFeed } from "../../rotes/Coordinator";
 import { useHistory} from "react-router";
 import mickIcon from "../../constants/assets/mick.svg"
-import sendIcon from "../../constants/assets/Playplay.svg"
+import sendIcon from "../../constants/assets/send.png"
 import responsesGpt from "../../pages/ChatPage/db"
-
+import play from "../../constants/assets/Play.png"
+import like from "../../constants/assets/like.png"
+import deslike from "../../constants/assets/deslike.png"
+import yellow from "../../constants/assets/elipseYellow.png"
+import red from "../../constants/assets/elipseRed.png"
+import green from "../../constants/assets/elipseGreen.png"
+import speakMessage from "../../components/SpeechUtils";
+import startRecording from "../../components/StartRecording";
 
 const ChatPage = () => {
   const history = useHistory()
@@ -89,6 +96,27 @@ const ChatPage = () => {
 
   };
 
+  // ChatPage.js
+  // const startRecording = () => {
+  //   if ('webkitSpeechRecognition' in window) {
+  //     let recognition = new window.webkitSpeechRecognition();
+  //     recognition.lang = 'pt-BR'; // Defina o idioma desejado
+  
+  //     recognition.onresult = function(event) {
+  //       if (event.results.length > 0) {
+  //         setInputMessage(event.results[0][0].transcript);
+  //       }
+  //     };
+  
+  //     recognition.start();
+  //   } else {
+  //     console.error('Speech recognition not supported in this browser');
+  //   }
+  // };
+
+
+
+
     return (
       <DivChat>
         <DivButtonBack>
@@ -98,16 +126,33 @@ const ChatPage = () => {
           {/* <select></select> */}
         </DivButtonBack>
               
-           <div style={{ position: "relative"}}>
+           <div style={{ position: "relative", height: "200vh"}}>
         {messages.map((message, i) => {
           return message.sender === "user" ? (
             <DivBoxUserMessage key={i}>{message.message}</DivBoxUserMessage>
           ) : (
+            <div>
               <DivBoxGptMessage key={i}>{message.message}</DivBoxGptMessage>
+              <DivGpt>
+                <section>
+                  <BtnTextoSpecth onClick={() => speakMessage(message.message)}>
+                    <img src={play}/>
+                    Ouvir
+                  </BtnTextoSpecth>
+                </section>
+                <section>
+                  <img src={like} style={{width: "15px", margin: "10px"}}/>
+                  <img src={deslike} style={{width: "15px"}}/>
+                  <img src={yellow} style={{width: "15px", margin: "10px"}}/>
+                  <p>4 de 4</p>
+                </section>
+              </DivGpt>
+            </div>
+            
              
           );
         })}
-               {loading && <DivLoading><Loading/></DivLoading>} {/* Mostrar tela de loading se o estado 'loading' for true */}
+          {loading && <DivLoading><Loading/></DivLoading>} {/* Mostrar tela de loading se o estado 'loading' for true */}
 
       </div>
      
@@ -118,12 +163,12 @@ const ChatPage = () => {
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
         />
-        <button onClick={handleSend}>
-          <img src={sendIcon} alt="botão enviar mensagem"/>
+        <button onClick={handleSend} >
+          <img src={sendIcon} alt="botão enviar mensagem" />
         </button>
-        <button>
+        <BtnVoice onClick={() => startRecording(setInputMessage)}>
           <img src={mickIcon} alt="botão enviar áudio"/>
-        </button>
+        </BtnVoice>
       </DivInputButton>
       </DivChat>
     )

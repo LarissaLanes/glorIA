@@ -42,7 +42,7 @@ export const DivInputButton = styled.div`
     gap: 1%;
 
     input{
-        width: 58vw;
+        width: 67vw;
         height: 40px;
         border:  none;
         outline: none;
@@ -51,16 +51,25 @@ export const DivInputButton = styled.div`
     }
 
     button{
-        border-radius: 50%;
-        heigth: 3rem;
-        width: 4rem;
-        background-color: ${RedColor};
         border: none;
 
         img{
-            margin: 20px 0;
+            // margin: 20px 0;
             height: 20px;
         }
+    }
+`
+
+export const BtnVoice = styled.button`
+    border-radius: 50%;
+    heigth: 2rem;
+    width: 4rem;
+    background-color: ${RedColor};
+    border: none;
+
+    img{
+        margin: 20px 0;
+        height: 20px;
     }
 `
 
@@ -103,6 +112,46 @@ export const DivListResponseBdGpt = styled.div`
 `
 
 export const DivGpt = styled.div`
-    border: solid 1px red;
+    // border: solid 4px red;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+    font-size: .8em;
+    
+    
+
+    section{
+        // border: solid green 2px;
+        display: flex;
+        height: 30px;
+        align-items: center;
+        button{
+
+        }
+
+        p{
+            color: ${TextColor};
+        }
+
+    }
+`
+
+export const BtnTextoSpecth = styled.button`
+    border: solid 1px ${RedColor};
+    border-radius: 20px;
+    width: 90px;
+    height: 25px;
+    color: ${RedColor};
+    font-size: 15px;
+    font-style: bold;
+    cursor: pointer;
+
+    img{
+        width: 10px;
+        margin-right:1rem;
+        
+    }
+
+    
 `
 
