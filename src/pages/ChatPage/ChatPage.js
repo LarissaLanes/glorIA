@@ -67,7 +67,9 @@ const ChatPage = () => {
        <DivListResponseBdGpt key={id}>
        <img src={imagem} alt={id} />
        <p>{materia}</p>
+       <a style={{textDecoration: "none"}}href={data} target="_blank" rel="noopener noreferrer">
        <h5>{data}</h5>
+       </a>
        </DivListResponseBdGpt>
  
        setMessages([...newMessages, { message: responseMessage, sender: "ChatGPT", image: imagem }]);
