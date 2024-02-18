@@ -31,8 +31,22 @@ export const DivLoading = styled.div`
     margin-bottom: 40vh;
     margin-top: 30px;
 `
+
+export const Bottom = styled.div`
+    flex-direction: column;
+`
+
+export const DivTexts = styled.div`
+    // border: solid 3px green;
+    display: flex;
+    padding: 3px;
+    position:fixed;
+    bottom: 15%;
+    margin-left: 30px;
+`
 export const DivInputButton = styled.div`
     // border: solid 1px red;
+    // background-color: ${BackgroundChatColor};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,6 +66,9 @@ export const DivInputButton = styled.div`
 
     button{
         border: none;
+        
+        
+
 
         img{
             // margin: 20px 0;
@@ -70,6 +87,7 @@ export const BtnVoice = styled.button`
     img{
         margin: 20px 0;
         height: 20px;
+        
     }
 `
 

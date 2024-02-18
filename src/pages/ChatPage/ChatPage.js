@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading, DivGpt, BtnTextoSpecth, BtnVoice} from "./Styled-Chat";
+import React, { useState, useEffect, useRef } from "react";
+import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading, DivGpt, BtnTextoSpecth, BtnVoice, DivTexts, Bottom} from "./Styled-Chat";
 import Loading from "../../components/Loading";
 import buttonBack from "../../constants/assets/arrowBack.png"
 import { goToFeed } from "../../rotes/Coordinator";
@@ -15,19 +15,21 @@ import red from "../../constants/assets/elipseRed.png"
 import green from "../../constants/assets/elipseGreen.png"
 import speakMessage from "../../components/SpeechUtils";
 import startRecording from "../../components/StartRecording";
+import LoginText from "../../components/LoginText";
 
 const ChatPage = () => {
   const history = useHistory()
   const apiKey = "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"
 
-  const [messages, setMessages] = useState([
-    {
-      message: "Olá, eu sou a GlorIA! Como posso te ajudar hoje?",
-      sender: "ChatGPT"
-    }
-  ]);
+  const [messageCount, setMessageCount] = useState(0);
+  const [disable, setDisable] = useState(false);
+  console.log(messageCount)
+
+
+  const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [loading, setLoading] = useState(false); // Estado para controlar a exibição da tela de loading
+
 
 
   const handleSend = async () => {
@@ -35,8 +37,20 @@ const ChatPage = () => {
       return;
     }
 
-    setLoading(true); // Mostrar tela de loading
+    setMessageCount(messageCount + 1);
 
+    if (messageCount >= 2) {
+      setInputMessage("");
+      setDisable(true);
+      // console.log("chegou a 3")
+
+    }
+
+
+    
+   
+
+    setLoading(true); // Mostrar tela de loading
 
      //mensagem do banco de dados(faz o if e se nao encontrar mensagem no banco de dados enviar pra api)
      const matchedResponse = responsesGpt.find(response => response.id.toLowerCase() === inputMessage.toLowerCase());
@@ -94,28 +108,8 @@ const ChatPage = () => {
     setMessages([...newMessages, { message: gptResponse, sender: "ChatGPT" }]);
     setLoading(false); // Esconder tela de loading
 
+
   };
-
-  // ChatPage.js
-  // const startRecording = () => {
-  //   if ('webkitSpeechRecognition' in window) {
-  //     let recognition = new window.webkitSpeechRecognition();
-  //     recognition.lang = 'pt-BR'; // Defina o idioma desejado
-  
-  //     recognition.onresult = function(event) {
-  //       if (event.results.length > 0) {
-  //         setInputMessage(event.results[0][0].transcript);
-  //       }
-  //     };
-  
-  //     recognition.start();
-  //   } else {
-  //     console.error('Speech recognition not supported in this browser');
-  //   }
-  // };
-
-
-
 
     return (
       <DivChat>
@@ -126,7 +120,7 @@ const ChatPage = () => {
           {/* <select></select> */}
         </DivButtonBack>
               
-           <div style={{ position: "relative", height: "200vh"}}>
+           <div style={{ position: "relative", height: "200vh"}} >
         {messages.map((message, i) => {
           return message.sender === "user" ? (
             <DivBoxUserMessage key={i}>{message.message}</DivBoxUserMessage>
@@ -143,8 +137,16 @@ const ChatPage = () => {
                 <section>
                   <img src={like} style={{width: "15px", margin: "10px"}}/>
                   <img src={deslike} style={{width: "15px"}}/>
-                  <img src={yellow} style={{width: "15px", margin: "10px"}}/>
-                  <p>4 de 4</p>
+
+
+                  {i >= 1 && i < 2 && <img src={green} style={{width: "15px", margin: "10px"}}/>}
+                  {i >= 2 && i < 3 && <img src={yellow} style={{width: "15px", margin: "10px"}}/>}
+                  {i >= 3 && <img src={red} style={{width: "15px", margin: "10px"}}/>}
+                  {/* <p>{messageCount} de 3</p> */}
+
+                  {i >= 1 && i < 2 && <p>1 de 3</p>}
+                  {i >= 2 && i < 3 && <p>2 de 3</p>}
+                  {i >= 3 && <p>3 de 3</p>}
                 </section>
               </DivGpt>
             </div>
@@ -155,21 +157,48 @@ const ChatPage = () => {
           {loading && <DivLoading><Loading/></DivLoading>} {/* Mostrar tela de loading se o estado 'loading' for true */}
 
       </div>
-     
-      <DivInputButton>
-        <input
-          type="text"
-          placeholder="Converse com a GlorIA"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-        />
-        <button onClick={handleSend} >
-          <img src={sendIcon} alt="botão enviar mensagem" />
-        </button>
-        <BtnVoice onClick={() => startRecording(setInputMessage)}>
-          <img src={mickIcon} alt="botão enviar áudio"/>
-        </BtnVoice>
-      </DivInputButton>
+      <Bottom>
+        <DivTexts>
+        {disable && <LoginText></LoginText>}
+            
+        </DivTexts>
+        
+        <DivInputButton>
+  {disable ? (
+    <>
+      <input
+        style={{ background: "#C4170C", opacity: "0.4", color: "#FFFFFF"}}
+        disabled={disable}
+        type="text"
+        placeholder="Converse com a glorIA"
+      />
+      <button disabled={disable} style={{opacity: "0.4"}}>
+        <img src={sendIcon} alt="botão enviar mensagem" />
+      </button>
+      <BtnVoice disabled={disable} style={{opacity: "0.4"}}>
+        <img src={mickIcon} alt="botão enviar áudio" />
+      </BtnVoice>
+    </>
+  ) : (
+    <>
+      <input
+        type="text"
+        placeholder="Converse com a glorIA"
+        value={inputMessage}
+        onChange={(e) => setInputMessage(e.target.value)}
+      />
+      <button onClick={handleSend}>
+        <img src={sendIcon} alt="botão enviar mensagem" />
+      </button>
+      <BtnVoice onClick={() => startRecording(setInputMessage)}>
+        <img src={mickIcon} alt="botão enviar áudio" />
+      </BtnVoice>
+    </>
+  )}
+</DivInputButton>
+
+      </Bottom>
+      
       </DivChat>
     )
 }
