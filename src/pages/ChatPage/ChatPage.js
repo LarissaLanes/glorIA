@@ -61,15 +61,28 @@ const ChatPage = () => {
        setMessages(newMessages);
        setInputMessage("");
    
-       const { id, imagem, materia, data } = matchedResponse;
+       const { id, titulo, imagem, materia, materia2, materia3, data, data2, data3 } = matchedResponse;
        const responseMessage = 
        
        <DivListResponseBdGpt key={id}>
-       <img src={imagem} alt={id} />
-       <p>{materia}</p>
-       <a style={{textDecoration: "none"}}href={data} target="_blank" rel="noopener noreferrer">
-       <h5>{data}</h5>
+       <img src={imagem} alt={materia} />
+       <p style={{color: "#555555"}}>{titulo}</p>
+       <li style={{listStyle: "none"}}>
+        
+        <a style={{textDecoration: "none", color: "#C4170C" }}href={data} target="_blank" rel="noopener noreferrer">
+        <p style={{color: "#C4170C"}}>{materia}</p>
        </a>
+        
+       <a style={{textDecoration: "none", color: "#C4170C" }}href={data2} target="_blank" rel="noopener noreferrer">
+        <p style={{color: "#C4170Ced"}}>{materia2}</p>
+       </a>
+
+       <a style={{textDecoration: "none", color: "#C4170C" }}href={data3} target="_blank" rel="noopener noreferrer">
+        <p style={{color: "#C4170C"}}>{materia3}</p>
+       </a>
+      
+       </li>
+       
        </DivListResponseBdGpt>
  
        setMessages([...newMessages, { message: responseMessage, sender: "ChatGPT", image: imagem }]);
@@ -122,7 +135,7 @@ const ChatPage = () => {
           </button>
           {/* <select></select> */}
         </DivButtonBack>
-           <div style={{ position: "relative", height: "270vh"}} >
+           <div style={{ position: "relative", height: "400vh"}} >
           
 
         {messages.map((message, i) => {
@@ -167,12 +180,26 @@ const ChatPage = () => {
         <DivMessageMock>
         <li>
           <ul>
-          <button onClick={() => handleSend("Ultimas do BBB 24")}>Ultimas do BBB 24</button>
+            {disable ? (
+                    <> <button style={{opacity: "0.4"}}
+                    disabled={disable}>Ultimas do BBB 24</button>
+                    <button style={{ opacity: "0.4"}}
+                    disabled={disable}>Filmes da semana</button>
+                    <button style={{ opacity: "0.4"}}
+                    disabled={disable}>Novela</button>
+                    <button style={{ opacity: "0.4"}}
+                    disabled={disable}>Política</button>
+                    <button style={{ opacity: "0.4"}}
+                    disabled={disable}>Carnaval 2024</button>
+                    <button style={{ opacity: "0.4"}}
+                    disabled={disable}>Futebol hoje</button> </>
+                    ) : (
+                    <> <button onClick={() => handleSend("Ultimas do BBB 24")}>Ultimas do BBB 24</button>
                     <button onClick={() => handleSend("Filmes da semana")}>Filmes da semana</button>
-                    <button onClick={() => handleSend("Blocos")}>Blocos</button>
-                    <button onClick={() => handleSend("Carnaval")}>Carnaval</button>
-                    <button onClick={() => handleSend("Ganhadora carnaval 2024")}>Ganhadora carnaval 2024</button>
-                    <button onClick={() => handleSend("BBB24")}>BBB24</button>
+                    <button onClick={() => handleSend("Novela")}>Novela</button>
+                    <button onClick={() => handleSend("Política")}>Política</button>
+                    <button onClick={() => handleSend("Carnaval 2024")}>Carnaval 2024</button>
+                    <button onClick={() => handleSend("Futebol hoje")}>Futebol hoje</button></>)}
           </ul>
         </li>
         </DivMessageMock>
@@ -183,7 +210,7 @@ const ChatPage = () => {
   {disable ? (
     <>
       <input
-        style={{ background: "#C4170C", opacity: "0.4", color: "#FFFFFF"}}
+        style={{ background: "#C4170C", opacity: "0.4"}}
         disabled={disable}
         type="text"
         placeholder="Converse com a glorIA"
