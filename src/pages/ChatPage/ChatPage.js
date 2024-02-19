@@ -17,6 +17,8 @@ import speakMessage from "../../components/SpeechUtils";
 import startRecording from "../../components/StartRecording";
 import LoginText from "../../components/LoginText";
 
+
+
 const ChatPage = () => {
   const history = useHistory()
   const apiKey = "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"
@@ -32,10 +34,8 @@ const ChatPage = () => {
 
 
 
-  const handleSend = async () => {
-    if (inputMessage.trim() === "") {
-      return;
-    }
+  const handleSend = async (inputMessage) => {
+    if (!inputMessage && inputMessage !== "") return;
 
     setMessageCount(messageCount + 1);
 
@@ -78,6 +78,7 @@ const ChatPage = () => {
        return;
      }
      //
+     const messageToSend = inputMessage || inputMessage.trim();
 
     const newMessages = [...messages, { message: inputMessage, sender: "user" }];
     setMessages(newMessages);
@@ -166,13 +167,12 @@ const ChatPage = () => {
         <DivMessageMock>
         <li>
           <ul>
-            <button>Ultimas do BBB 24</button>
-            <button>Filmes da semana</button>
-            <button>Blocos</button>
-            <button>Carnaval</button>
-            <button>Ganhadora carnaval 2024</button>
-            <button>BBB24</button>
-            
+          <button onClick={() => handleSend("Ultimas do BBB 24")}>Ultimas do BBB 24</button>
+                    <button onClick={() => handleSend("Filmes da semana")}>Filmes da semana</button>
+                    <button onClick={() => handleSend("Blocos")}>Blocos</button>
+                    <button onClick={() => handleSend("Carnaval")}>Carnaval</button>
+                    <button onClick={() => handleSend("Ganhadora carnaval 2024")}>Ganhadora carnaval 2024</button>
+                    <button onClick={() => handleSend("BBB24")}>BBB24</button>
           </ul>
         </li>
         </DivMessageMock>
@@ -203,7 +203,7 @@ const ChatPage = () => {
         value={inputMessage}
         onChange={(e) => setInputMessage(e.target.value)}
       />
-      <button onClick={handleSend}>
+      <button onClick={() => handleSend(inputMessage)}>
         <img src={sendIcon} alt="botão enviar mensagem" />
       </button>
       <BtnVoice onClick={() => startRecording(setInputMessage)}>
