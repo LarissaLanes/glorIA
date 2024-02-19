@@ -53,7 +53,7 @@ export const DivInputButton = styled.div`
     align-items: center;
     padding: 3px;
     position:fixed;
-    bottom: 2%;
+    bottom: 0%;
     gap: 1%;
     
 
