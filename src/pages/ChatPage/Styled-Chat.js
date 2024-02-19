@@ -36,17 +36,53 @@ export const DivLoading = styled.div`
 export const Bottom = styled.div`
     flex-direction: column;
 `
+export const DivMessageMock = styled.div`
+    // border: solid 3px black;
+    overflow-x: auto;
+    // white-space: nowrap;
+    padding: 10px;
+    
+    li {
+        // border: solid 3px orange;
+        list-style: none;
+        // margin-right: 10px;
+        padding: 7px;
+
+        ul{
+            // border: solid 3px yellow;
+            // display: flex;
+            padding: 0;
+            
+
+            button {
+                border: solid 1px ${RedColor};
+                background: transparent;
+                height: auto;
+                border-radius: 50px;
+                padding: 7px;
+                color: ${RedColor};
+                margin: 3px;
+                // white-space: nowrap;
+            }
+        }
+
+       
+    }
+`
 
 export const DivTexts = styled.div`
     // border: solid 3px green;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 3px;
     position:fixed;
-    bottom: 15%;
-    margin-left: 30px;
+    bottom: 6%;
+
+    
 `
 export const DivInputButton = styled.div`
-    // border: solid 1px red;
+    border: none;
     background-color: ${BackgroundChatColor};
     display: flex;
     justify-content: space-between;
@@ -68,6 +104,7 @@ export const DivInputButton = styled.div`
 
     button{
         border: none;
+       
         
         
 

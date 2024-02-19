@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading, DivGpt, BtnTextoSpecth, BtnVoice, DivTexts, Bottom} from "./Styled-Chat";
+import { DivButtonBack, DivChat, DivInputButton, DivBoxGptMessage, DivBoxUserMessage, DivListResponseBdGpt, DivLoading, DivGpt, BtnTextoSpecth, BtnVoice, DivTexts, Bottom, DivMessageMock} from "./Styled-Chat";
 import Loading from "../../components/Loading";
 import buttonBack from "../../constants/assets/arrowBack.png"
 import { goToFeed } from "../../rotes/Coordinator";
@@ -121,8 +121,9 @@ const ChatPage = () => {
           </button>
           {/* <select></select> */}
         </DivButtonBack>
-              
-           <div style={{ position: "relative", height: "200vh"}} >
+           <div style={{ position: "relative", height: "270vh"}} >
+          
+
         {messages.map((message, i) => {
           return message.sender === "user" ? (
             <DivBoxUserMessage key={i}>{message.message}</DivBoxUserMessage>
@@ -162,7 +163,20 @@ const ChatPage = () => {
       <Bottom>
         <DivTexts>
         {disable && <LoginText></LoginText>}
+        <DivMessageMock>
+        <li>
+          <ul>
+            <button>Ultimas do BBB 24</button>
+            <button>Filmes da semana</button>
+            <button>Blocos</button>
+            <button>Carnaval</button>
+            <button>Ganhadora carnaval 2024</button>
+            <button>BBB24</button>
             
+          </ul>
+        </li>
+        </DivMessageMock>
+        
         </DivTexts>
         
         <DivInputButton>

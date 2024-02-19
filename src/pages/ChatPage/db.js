@@ -13,13 +13,13 @@ const responsesGpt = [
         "data": "https://gshow.globo.com/realities/bbb/bbb-24/dentro-da-casa/noticia/fernanda-sugere-que-isabelle-seja-mais-favorita-que-davi-e-rodriguinho-dispara-nao-me-passa-confianca.ghtml"
     },
     {
-        "id": "bbb 24",
+        "id": "BBB24",
         "materia": "Vanessa lopes segue internada na casa dos pais informação é de boletim médico divulgado nas redes sociais da influencer.",
         "imagem": bbb,
         "data": "https://g1.globo.com/pop-arte/noticia/2024/01/19/quem-e-vanessa-lopes-bbb-24.ghtml"
     },
     {
-        "id": "Blocos de rua",
+        "id": "Blocos",
         "materia": "Filtre por nome, data, local ou categoria entre os 453 desfiles de sábado (13) até o fim da folia.",
         "imagem": blocoDeRua,
         "data": "https://g1.globo.com/rj/rio-de-janeiro/carnaval/2024/"
@@ -31,7 +31,7 @@ const responsesGpt = [
         "data": "https://redeglobo.globo.com/filmes/noticia/sessao-da-tarde-confira-os-filmes-exibidos-na-semana-de-19-a-23-de-fevereiro.ghtml"
     },
     {
-        "id": "Carnaval 2024",
+        "id": "Carnaval",
         "materia": "TV Globo, gshow, Multishow e GNT terão programação especial que inclui desfiles de São Paulo e Rio de Janeiro, folia em Salvador e também Carnaval da Sabrina",
         "imagem": carnaval,
         "data": "https://g1.globo.com/rj/rio-de-janeiro/carnaval/2024/"
