@@ -24,9 +24,7 @@ export const DivNavBar = styled.div`
         background: transparent;
         border: none;
         
-        img{
-            height: 1.5rem;
-        }
+        
     }
 `
 
@@ -48,7 +46,7 @@ export const DivScroolButton = styled.div`
                 background: transparent;
                 border: none;
                 color:  ${TextColor};
-                font-size: 0.875rem;
+                // font-size: 0.875rem;
             }
         }
     }

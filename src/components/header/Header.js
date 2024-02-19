@@ -2,9 +2,9 @@ import { DivHeader, DivNavBar, DivScroolButton } from "./Styled-Header";
 import {goToChat} from "../../rotes/Coordinator"
 import { useHistory} from "react-router";
 import logoG1 from "../../constants/assets/UnionlogoG1.svg"
-import gloriaChat from "../../constants/assets/homebaloomButton.svg"
-import notification from "../../constants/assets/Vectorsino.svg"
-import search from "../../constants/assets/VectorSearch.svg"
+import gloriaChat from "../../constants/assets/home.png"
+import notification from "../../constants/assets/Vector.png"
+import search from "../../constants/assets/Vectorsearch.png"
 
 const Header = () => {
     const history = useHistory()
@@ -15,13 +15,13 @@ const Header = () => {
             <div><img src={logoG1}/></div>
             <div>
                 <button onClick={() => goToChat(history)}>
-                    <img src={gloriaChat} alt="gloria"/>
+                    <img src={gloriaChat} alt="gloria" style={{height: "2rem"}} />
                 </button>
                 <button>
-                    <img src={notification} alt="gloria"/>
+                    <img src={notification} alt="gloria" style={{height: "1.5rem"}}/>
                 </button>
                 <button>
-                    <img src={search} alt="gloria"/>
+                    <img src={search} alt="gloria" style={{height: "1.5rem"}}/>
                 </button>
             </div>
            </DivNavBar>

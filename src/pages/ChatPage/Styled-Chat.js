@@ -13,6 +13,7 @@ export const DivButtonBack = styled.div`
     display: flex;
     // border: solid 4px black;
     justify-content: center;
+    margin-top: 1rem;
 
     button{
         background-color: transparent;
@@ -46,7 +47,7 @@ export const DivTexts = styled.div`
 `
 export const DivInputButton = styled.div`
     // border: solid 1px red;
-    // background-color: ${BackgroundChatColor};
+    background-color: ${BackgroundChatColor};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -54,6 +55,7 @@ export const DivInputButton = styled.div`
     position:fixed;
     bottom: 2%;
     gap: 1%;
+    
 
     input{
         width: 67vw;
@@ -157,7 +159,7 @@ export const DivGpt = styled.div`
 export const BtnTextoSpecth = styled.button`
     border: solid 1px ${RedColor};
     border-radius: 20px;
-    width: 90px;
+    width: 100px;
     height: 25px;
     color: ${RedColor};
     font-size: 15px;
@@ -166,7 +168,7 @@ export const BtnTextoSpecth = styled.button`
 
     img{
         width: 10px;
-        margin-right:1rem;
+        margin-right: 6px;
         
     }
 
