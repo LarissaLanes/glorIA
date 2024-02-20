@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/6271cd4d-a2db-4768-a6f1-4f2e5c75ef15">
+# GlorIA
+site desenvolvido em javascript com React.js e utilizado a API do chatGpt - OpenAI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Autores
 
-## Available Scripts
+- [@LarissaLanes](https://www.github.com/LarissaLanes)
 
-In the project directory, you can run:
+## Stack utilizada
 
-### `npm start`
+**Front-end:** javascript, React.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Back-end:** [API Chat GPT]([https://teachablemachine.withgoogle.com/](https://platform.openai.com/docs/api-reference))
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dependencias
 
-### `npm test`
+- Material-ui
+- Styled Components
+- Axios
+- Lottie
+- React-router
+- Sweet alert
+- Dotenv
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Funcionalidades
+**Implementadas:** 
+- Requisição no json interno (Banco de dados simulado )
+- Requisição da API do chat GPT
+- transforma a mensagem de voz em texto e envia para a IA(speech-to-text)
+- transforma a mensagems de texto em audio (text-to-speech)
+- Contabiliza a quantidade de mensagens do usuário até chegar em 3
+- Envia as mensagens pré-definidas
+- Redirecionamento para matérias do g1 ou página de login da Conta Globo
 
-### `npm run build`
+**Não implementadas:** 
+- Like e deslike na notícia
+- Mudança das mensagens pré-definidas de acordo com a matéria
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## fotos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/758c3b90-dbc6-4450-b12e-4a912e903359">
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/f04fecf7-3a0c-4289-a597-7c0528b6b4c0">
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/99ee8e14-64f3-43bd-aea1-1cdc5e6095de">
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/b150acc2-3b32-4465-8fe1-fa4be6281ae4">
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/1913905e-3022-4ba7-b195-40bb72f0cc3c">
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/9e2cf605-164f-4cf0-9bd8-bacb0f6cba00">
+<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/bd6f2d92-c08f-46c3-9a37-1b48656b67a0">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
