@@ -1,4 +1,3 @@
-<img width="352" alt="image" src="https://github.com/LarissaLanes/glorIA_react/assets/91152234/6271cd4d-a2db-4768-a6f1-4f2e5c75ef15">
 # GlorIA
 site desenvolvido em javascript com React.js e utilizado a API do chatGpt - OpenAI
 
