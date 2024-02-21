@@ -11,6 +11,10 @@ site desenvolvido em javascript com React.js e utilizado a API do chatGpt - Open
 
 **Back-end:** [API Chat GPT]([https://teachablemachine.withgoogle.com/](https://platform.openai.com/docs/api-reference))
 
+## Deploy
+
+[GlorIA](https://glor-ia-react.vercel.app/gloria)
+
 ## Dependencias
 
 - Material-ui
