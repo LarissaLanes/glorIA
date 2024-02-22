@@ -1,7 +1,7 @@
 const startRecording = (setInputMessage) => {
     if ('webkitSpeechRecognition' in window) {
       let recognition = new window.webkitSpeechRecognition();
-      recognition.lang = 'pt-BR'; // Defina o idioma desejado
+      recognition.lang = 'pt-BR'; 
   
       recognition.onresult = function(event) {
         if (event.results.length > 0) {

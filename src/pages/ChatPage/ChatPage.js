@@ -17,22 +17,15 @@ import speakMessage from "../../components/SpeechUtils";
 import startRecording from "../../components/StartRecording";
 import LoginText from "../../components/LoginText";
 
-
-
 const ChatPage = () => {
   const history = useHistory()
   const apiKey = "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"
 
   const [messageCount, setMessageCount] = useState(0);
   const [disable, setDisable] = useState(false);
-  console.log(messageCount)
-
-
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [loading, setLoading] = useState(false); // Estado para controlar a exibição da tela de loading
-
-
+  const [loading, setLoading] = useState(false); 
 
   const handleSend = async (inputMessage) => {
     if (!inputMessage && inputMessage !== "") return;
@@ -42,21 +35,13 @@ const ChatPage = () => {
     if (messageCount >= 2) {
       setInputMessage("");
       setDisable(true);
-      // console.log("chegou a 3")
-
     }
+      setLoading(true); 
 
-
-    
-   
-
-    setLoading(true); // Mostrar tela de loading
-
-     //mensagem do banco de dados(faz o if e se nao encontrar mensagem no banco de dados enviar pra api)
+     //pesquisa no BD antes de fazer a requisição para IA
      const matchedResponse = responsesGpt.find(response => response.id.toLowerCase() === inputMessage.toLowerCase());
 
      if (matchedResponse) {
-       // Se corresponder, usar o conteúdo da resposta como mensagem
        const newMessages = [...messages, { message: inputMessage, sender: "user" }];
        setMessages(newMessages);
        setInputMessage("");
@@ -68,30 +53,24 @@ const ChatPage = () => {
        <img src={imagem} alt={materia} />
        <p style={{color: "#555555"}}>{titulo}</p>
        <li style={{listStyle: "none"}}>
-        
         <a style={{textDecoration: "none", color: "#C4170C" }}href={data} target="_blank" rel="noopener noreferrer">
         <p style={{color: "#C4170C"}}>{materia}</p>
-       </a>
-        
+       </a> 
        <a style={{textDecoration: "none", color: "#C4170C" }}href={data2} target="_blank" rel="noopener noreferrer">
         <p style={{color: "#C4170Ced"}}>{materia2}</p>
        </a>
-
        <a style={{textDecoration: "none", color: "#C4170C" }}href={data3} target="_blank" rel="noopener noreferrer">
         <p style={{color: "#C4170C"}}>{materia3}</p>
        </a>
-      
        </li>
-       
        </DivListResponseBdGpt>
  
        setMessages([...newMessages, { message: responseMessage, sender: "ChatGPT", image: imagem }]);
-       setLoading(false); // Esconder tela de loading
+       setLoading(false); 
 
        return;
      }
-     //
-     const messageToSend = inputMessage || inputMessage.trim();
+    const messageToSend = inputMessage || inputMessage.trim();
 
     const newMessages = [...messages, { message: inputMessage, sender: "user" }];
     setMessages(newMessages);
@@ -114,7 +93,7 @@ const ChatPage = () => {
 
     if (!response.ok) {
       console.error("Erro ao enviar mensagem para a API do ChatGPT");
-      setLoading(false); // Esconder tela de loading
+      setLoading(false); 
 
       return;
     }
@@ -122,9 +101,7 @@ const ChatPage = () => {
     const { choices } = await response.json();
     const gptResponse = choices[0].text.trim();
     setMessages([...newMessages, { message: gptResponse, sender: "ChatGPT" }]);
-    setLoading(false); // Esconder tela de loading
-
-
+    setLoading(false); 
   };
 
     return (
@@ -133,11 +110,8 @@ const ChatPage = () => {
           <button onClick={() => goToFeed(history)}>
             <img src={buttonBack}  alt="botao de fechar o chat"/>
           </button>
-          {/* <select></select> */}
         </DivButtonBack>
            <div style={{ position: "relative", height: "400vh"}} >
-          
-
         {messages.map((message, i) => {
           return message.sender === "user" ? (
             <DivBoxUserMessage key={i}>{message.message}</DivBoxUserMessage>
@@ -154,12 +128,9 @@ const ChatPage = () => {
                 <section>
                   <img src={like} style={{width: "15px", margin: "10px"}}/>
                   <img src={deslike} style={{width: "15px"}}/>
-
-
                   {i >= 1 && i < 2 && <img src={green} style={{width: "15px", margin: "10px"}}/>}
                   {i >= 2 && i < 3 && <img src={yellow} style={{width: "15px", margin: "10px"}}/>}
                   {i >= 3 && <img src={red} style={{width: "15px", margin: "10px"}}/>}
-                  {/* <p>{messageCount} de 3</p> */}
 
                   {i >= 1 && i < 2 && <p>1 de 3</p>}
                   {i >= 2 && i < 3 && <p>2 de 3</p>}
@@ -167,12 +138,9 @@ const ChatPage = () => {
                 </section>
               </DivGpt>
             </div>
-            
-             
           );
         })}
-          {loading && <DivLoading><Loading/></DivLoading>} {/* Mostrar tela de loading se o estado 'loading' for true */}
-
+          {loading && <DivLoading><Loading/></DivLoading>} 
       </div>
       <Bottom>
         <DivTexts>
@@ -181,67 +149,63 @@ const ChatPage = () => {
         <li>
           <ul>
             {disable ? (
-                    <> <button style={{opacity: "0.4"}}
-                    disabled={disable}>Ultimas do BBB 24</button>
-                    <button style={{ opacity: "0.4"}}
-                    disabled={disable}>Filmes da semana</button>
-                    <button style={{ opacity: "0.4"}}
-                    disabled={disable}>Novela</button>
-                    <button style={{ opacity: "0.4"}}
-                    disabled={disable}>Política</button>
-                    <button style={{ opacity: "0.4"}}
-                    disabled={disable}>Carnaval 2024</button>
-                    <button style={{ opacity: "0.4"}}
-                    disabled={disable}>Futebol hoje</button> </>
-                    ) : (
-                    <> <button onClick={() => handleSend("Ultimas do BBB 24")}>Ultimas do BBB 24</button>
-                    <button onClick={() => handleSend("Filmes da semana")}>Filmes da semana</button>
-                    <button onClick={() => handleSend("Novela")}>Novela</button>
-                    <button onClick={() => handleSend("Política")}>Política</button>
-                    <button onClick={() => handleSend("Carnaval 2024")}>Carnaval 2024</button>
-                    <button onClick={() => handleSend("Futebol hoje")}>Futebol hoje</button></>)}
+              <> <button style={{opacity: "0.4"}}
+              disabled={disable}>Ultimas do BBB 24</button>
+              <button style={{ opacity: "0.4"}}
+              disabled={disable}>Filmes da semana</button>
+              <button style={{ opacity: "0.4"}}
+              disabled={disable}>Novela</button>
+              <button style={{ opacity: "0.4"}}
+              disabled={disable}>Política</button>
+              <button style={{ opacity: "0.4"}}
+              disabled={disable}>Carnaval 2024</button>
+              <button style={{ opacity: "0.4"}}
+              disabled={disable}>Futebol hoje</button> </>
+              ) : (
+              <> <button onClick={() => handleSend("Ultimas do BBB 24")}>Ultimas do BBB 24</button>
+              <button onClick={() => handleSend("Filmes da semana")}>Filmes da semana</button>
+              <button onClick={() => handleSend("Novela")}>Novela</button>
+              <button onClick={() => handleSend("Política")}>Política</button>
+              <button onClick={() => handleSend("Carnaval 2024")}>Carnaval 2024</button>
+              <button onClick={() => handleSend("Futebol hoje")}>Futebol hoje</button></>)}
           </ul>
         </li>
         </DivMessageMock>
-        
         </DivTexts>
-        
         <DivInputButton>
-  {disable ? (
-    <>
-      <input
-        style={{ background: "#C4170C", opacity: "0.4"}}
-        disabled={disable}
-        type="text"
-        placeholder="Converse com a glorIA"
-      />
-      <button disabled={disable} style={{opacity: "0.4"}}>
-        <img src={sendIcon} alt="botão enviar mensagem" />
-      </button>
-      <BtnVoice disabled={disable} style={{opacity: "0.4"}}>
-        <img src={mickIcon} alt="botão enviar áudio" />
-      </BtnVoice>
-    </>
-  ) : (
-    <>
-      <input
-        type="text"
-        placeholder="Converse com a glorIA"
-        value={inputMessage}
-        onChange={(e) => setInputMessage(e.target.value)}
-      />
-      <button onClick={() => handleSend(inputMessage)}>
-        <img src={sendIcon} alt="botão enviar mensagem" />
-      </button>
-      <BtnVoice onClick={() => startRecording(setInputMessage)}>
-        <img src={mickIcon} alt="botão enviar áudio" />
-      </BtnVoice>
-    </>
-  )}
-</DivInputButton>
-
+        {disable ? (
+          <>
+          <input
+            style={{ background: "#C4170C", opacity: "0.4"}}
+            disabled={disable}
+            type="text"
+            placeholder="Converse com a glorIA"
+          />
+          <button disabled={disable} style={{opacity: "0.4"}}>
+          <img src={sendIcon} alt="botão enviar mensagem" />
+          </button>
+          <BtnVoice disabled={disable} style={{opacity: "0.4"}}>
+            <img src={mickIcon} alt="botão enviar áudio" />
+          </BtnVoice>
+          </>
+        ) : (
+          <>
+          <input
+            type="text"
+            placeholder="Converse com a glorIA"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+          />
+          <button onClick={() => handleSend(inputMessage)}>
+          <img src={sendIcon} alt="botão enviar mensagem" />
+          </button>
+          <BtnVoice onClick={() => startRecording(setInputMessage)}>
+            <img src={mickIcon} alt="botão enviar áudio" />
+          </BtnVoice>
+          </>
+        )}
+        </DivInputButton>
       </Bottom>
-      
       </DivChat>
     )
 }

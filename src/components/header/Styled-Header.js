@@ -23,8 +23,6 @@ export const DivNavBar = styled.div`
     button{
         background: transparent;
         border: none;
-        
-        
     }
 `
 
@@ -46,15 +44,7 @@ export const DivScroolButton = styled.div`
                 background: transparent;
                 border: none;
                 color:  ${TextColor};
-                // font-size: 0.875rem;
             }
         }
-    }
-   
-    
-    
- 
-  
-    
-    
+    }  
 `
