@@ -70,7 +70,6 @@ const ChatPage = () => {
 
        return;
      }
-    const messageToSend = inputMessage || inputMessage.trim();
 
     const newMessages = [...messages, { message: inputMessage, sender: "user" }];
     setMessages(newMessages);
